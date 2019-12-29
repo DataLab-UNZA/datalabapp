@@ -2,6 +2,12 @@
 // Use configuration entries in ".env" file
 require("dotenv").config();
 
+// Path
+const path = require("path");
+
+// Express Layouts
+const expressLayouts = require("express-ejs-layouts");
+
 // Express JS
 const express = require("express");
 const app = express();
@@ -32,7 +38,17 @@ const indexRouter = require("./routes/index");
 const internsRouter = require("./routes/interns");
 const projectsRouter = require("./routes/projects");
 
+
+//--- Settings ---
+
+app.set("view engine", "ejs"); // Specify templating engine
+app.set("views", path.join(__dirname, "views")); // Specify view directory
+app.set("layout", path.join("layouts", "layout")); // Specify layout file to be used in project
+
 //--- Middleware ---
+
+app.use(expressLayouts); // Explicitly indicate that expressLayouts will be used---express-ejs-layouts
+app.use(express.static(path.join(__dirname, "public"))); // Configure public directory
 
 app.use(bodyParser.urlencoded(
     {
@@ -45,12 +61,8 @@ app.use("/", indexRouter);
 app.use("/interns", internsRouter);
 app.use("/projects", projectsRouter);
 
-
-
-
-
 // Configure port where application will run from
-const PORT = process.env.PORT || 9000;
+const PORT = process.env.PORT || 9001;
 
 app.listen(PORT, () => {
     console.log(`DataLab app running on PORT: ${PORT}`);

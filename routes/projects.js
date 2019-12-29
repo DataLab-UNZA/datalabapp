@@ -100,4 +100,23 @@ router.put("/edit/:projectID", (req, res) => {
 });
 
 
+// Router for deleting an existing project
+router.delete("/delete/:projectID", (req, res) => {
+    const projectID = req.params.projectID;
+
+    Project.findOneAndDelete(
+        {projectCode: projectID},
+        (error, project) => {
+            if (error) {
+                //
+                console.log(`Error deleting project. Error: ${error}`);
+                res.send(`Error deleting project.`);
+            } else {
+                //
+                console.log(`Deleted project: ${project}`);
+                res.send(`Deleted project: ${project}`);
+            }
+        });
+});
+
 module.exports = router;

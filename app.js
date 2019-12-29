@@ -6,6 +6,9 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 
+// Body parser
+const bodyParser = require("body-parser");
+
 // Mongoose
 const mongoose  = require("mongoose");
 mongoose.connect(
@@ -15,6 +18,7 @@ mongoose.connect(
     }
 );
 
+// Configure database connection
 const db = mongoose.connection;
 db.on("error", (error) => {
     console.log(`Database Error: ${error}`); // check to see if there are database errors
@@ -28,13 +32,20 @@ const indexRouter = require("./routes/index");
 const internsRouter = require("./routes/interns");
 const projectsRouter = require("./routes/projects");
 
+//--- Middleware ---
+
+app.use(bodyParser.urlencoded(
+    {
+        extended: true
+    }
+));
+
 // Configure sub routers
 app.use("/", indexRouter);
 app.use("/interns", internsRouter);
 app.use("/projects", projectsRouter);
 
 
-// Configure database connection
 
 
 

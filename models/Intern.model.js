@@ -25,8 +25,8 @@ const InternSchema = new Schema({
         required: true
     },
     studentID: String,
-    emailAddress: Array,
-    phoneNumber: Array,
+    emailAddress: [String],
+    phoneNumber: [String],
     residentialAddress: String
 });
 

@@ -56,4 +56,33 @@ router.get("/search/name/:fullName", (req, res) => {
     });
 });
 
+
+// Router for addding a new intern
+router.post("/add", (req, res) => {
+    //
+    const newIntern = new Intern();
+    newIntern.fullName = req.body.fullName ? req.body.fullName: "";
+    newIntern.studentID = req.body.studentID ? req.body.studentID: "";
+    newIntern.emailAddress.push(req.body.emailAddress ? req.body.emailAddress: "");
+    newIntern.phoneNumber.push(req.body.phoneNumber ? req.body.phoneNumber: "");
+    newIntern.residentialAddress = req.body.residentialAddress ? req.body.residentialAddress: "";
+    // 
+    newIntern.save((error, intern) => {
+        if(error) {
+            //
+            console.log(`Error creating new intern. Error: ${error}.`);
+            res.send(`Error creating new intern.`);
+        } else {
+            //
+            console.log(`Creating new intern: ${newIntern}`);
+            res.json(newIntern);
+        }
+    });
+});
+
+// Router for editing  an existing user
+
+// Router for deleting an existing user
+
+
 module.exports = router;

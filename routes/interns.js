@@ -113,6 +113,25 @@ router.put("/edit/:studentID", (req, res) => {
 });
 
 // Router for deleting an existing user
+router.delete("/delete/:studentID", (req, res) => {
+    const internID = req.params.studentID;
+
+    Intern.findOneAndDelete(
+        {
+            studentID: internID
+        },
+        (error, intern) => {
+            if(error) {
+                //
+                console.log(`Error deleting intern. Error: ${error}`);
+                res.send(`Error deleting intern.`);
+            } else {
+                //
+                console.log(`Deleted intern: ${intern}`);
+                res.json(intern);
+            }
+        });
+});
 
 
 module.exports = router;

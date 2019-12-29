@@ -81,6 +81,36 @@ router.post("/add", (req, res) => {
 });
 
 // Router for editing  an existing user
+router.put("/edit/:studentID", (req, res) => {
+    //
+    const internID = req.params.studentID;
+
+    Intern.findOneAndReplace(
+        {studentID: internID},
+        {
+            studentID: internID,
+            fullName: req.body.fullName ? req.body.fullName: Intern.fullName,
+            residentialAddress: req.body.residentialAddress ? req.body.residentialAddress: Intern.residentialAddress,
+            emailAddress: req.body.emailAddress ? req.body.emailAddress: Intern.emailAddress,
+            phoneNumber: req.body.phoneNumber ? req.body.phoneNumber: Intern.phoneNumber,
+        },
+        {
+            new: true,
+            upsert: false,
+            useFindAndModify: false
+        },
+        (error, intern) => {
+            if(error) {
+                //
+                console.log(`Error updating intern record. Error: ${error}`);
+                res.send(`Error updating intern record.`);
+            } else {
+                //
+                console.log(`Document after update: ${intern}`);
+                res.json(intern);
+            }
+        });
+});
 
 // Router for deleting an existing user
 

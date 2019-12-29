@@ -14,7 +14,8 @@ router.get("/", (req, res) => {
         } else {
             // Render projects
             console.log(`Extracting projects: ${projects}`);
-            res.json(projects);
+            //res.json(projects);
+            res.render("projects/index", {projects: projects});
         }
     });
 });
@@ -36,7 +37,8 @@ router.get("/search/project/:searchText", (req, res) => {
         } else {
             //
             console.log(`Extracting projects with phrase: ${searchText}`);
-            res.json(projects);
+            //res.json(projects); // ONLY used for testing API calls
+            res.render("projects/project", {projects: projects});
         }
     });
 });

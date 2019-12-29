@@ -15,7 +15,8 @@ router.get("/", (req, res) => {
         } else{
             //
             console.log(`Extracting Interns: ${interns}`);
-            res.json(interns)
+            //res.json(interns) // ONLY for testing API calls
+            res.render("interns/index", {interns: interns});
         }
     });
 });
@@ -26,7 +27,7 @@ router.get("/search/id/:studentID", (req, res) => {
     // res.send("/search/:studetnID");
     const searchKey = req.params.studentID;
     // Experiment with wild character: studentID: {$regex: '*' + searchKey + '*'}
-    Intern.find({studentID: searchKey}).exec((error, student) => {
+    Intern.find({studentID: searchKey}).exec((error, intern) => {
         if(error) {
             //
             console.log(`Error extracting student with ID: ${searchKey}`);
@@ -34,7 +35,8 @@ router.get("/search/id/:studentID", (req, res) => {
         } else {
             //
             console.log(`Found student: ${searchKey}`);
-            res.json(student);
+            //res.json(student); // ONLY used for testing API calls
+            res.render("interns/intern", {intern: intern}); // render a single intern
         }
     });
 });
@@ -43,15 +45,16 @@ router.get("/search/id/:studentID", (req, res) => {
 router.get("/search/name/:fullName", (req, res) => {
     //res.send("/search/name:fullName");
     const fullName = req.params.fullName;
-    Intern.find({fullName: {$regex: '.*' + fullName + '.*'}}).exec((error, fullNames) => {
+    Intern.find({fullName: {$regex: '.*' + fullName + '.*'}}).exec((error, interns) => {
         if(error) {
             //
             console.log(`Error extracting name from database. Error: ${error}`);
             res.send(`Error extracting name from database.`);
         } else {
             //
-            console.log(`Extracted records matching fullName: ${fullNames}`);
-            res.json(fullNames);
+            console.log(`Extracted records matching fullName: ${interns}`);
+            //res.json(interns); // ONLY used for testing API calls
+            res.render("interns/intern", {intern: interns});
         }
     });
 });

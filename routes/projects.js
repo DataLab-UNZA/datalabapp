@@ -70,4 +70,34 @@ router.post("/add", (req, res) => {
 });
 
 
+// Router for editing an existing Project
+router.put("/edit/:projectID", (req, res) => {
+    const projectID = req.params.projectID;
+
+    Project.findOneAndReplace(
+        {projectCode: projectID},
+        {
+            projectCode: req.body.projectCode ? req.body.projectCode: projectID,
+            projectName: req.body.projectName,
+            projectDescription: req.body.projectDescription,
+            responsibility: req.body.responsibility
+        },
+        {
+            new: true,
+            upsert: false,
+            useFindAndModify: false
+        },
+        (error, project) => {
+            if(error) {
+                //
+                console.log(`Error updating project. Error: ${error}`);
+            } else {
+                //
+                console.log(`Update project: ${project}`);
+                res.json(project);
+            }
+        });
+});
+
+
 module.exports = router;

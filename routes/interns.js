@@ -88,7 +88,7 @@ router.put("/edit/:studentID", (req, res) => {
     Intern.findOneAndReplace(
         {studentID: internID},
         {
-            studentID: internID,
+            studentID: req.body.studentID ? req.body.studentID: internID,
             fullName: req.body.fullName ? req.body.fullName: Intern.fullName,
             residentialAddress: req.body.residentialAddress ? req.body.residentialAddress: Intern.residentialAddress,
             emailAddress: req.body.emailAddress ? req.body.emailAddress: Intern.emailAddress,

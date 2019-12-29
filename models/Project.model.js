@@ -21,7 +21,7 @@ const ProjectSchema = new Schema({
     projectCode: String,
     projectName: String,
     ProjectDescription: String,
-    responsibility: [{fullName: String}]
+    responsibility: [{}]
 });
 
 module.exports = mongoose.model("Project", ProjectSchema, "datalabProjects");

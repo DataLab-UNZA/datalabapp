@@ -2,6 +2,7 @@ const express = require("express");
 
 const router = express.Router();
 const Project = require("../models/Project.model");
+const Intern = require("../models/Intern.model");
 
 // Router to extract all projects in the database
 router.get("/", (req, res) => {
@@ -44,6 +45,22 @@ router.get("/search/project/:searchText", (req, res) => {
 });
 
 
+// Router for rendering form for adding new project
+router.get("/add", (req, res) => {
+    
+    Intern.find({}).exec((error, intern) =>{
+        if(error) {
+            //
+            console.log(`Error extracting interns. Error: ${error}`);
+            res.redirect("/interns");
+        } else {
+            //
+            console.log(`Extracting interns: ${intern}`);
+            res.render("projects/add", {project: new Project(), interns: intern});
+        }
+    });
+});
+
 // Router for adding a single project
 router.post("/add", (req, res) => {
     const newProject = new Project();
@@ -52,9 +69,10 @@ router.post("/add", (req, res) => {
     newProject.projectName = req.body.projectName;
     newProject.projectDescription = req.body.projectDescription;
     // Push all individuals that are part of the project
-    req.body.responsibility.forEach((responsible) => {
+    /*req.body.responsibility.forEach((responsible) => {
         newProject.responsibility.push({"fullName": responsible});
-    });
+    });*/
+    newProject.responsibility = {fullName: req.body.responsibility};
     
     newProject.save((error, project) => {
         if(error) {
@@ -64,7 +82,8 @@ router.post("/add", (req, res) => {
         } else {
             //
             console.log(`Creating new project: ${project}`);
-            res.json(project);
+            //res.json(project); // ONLY used for testing API calls
+            res.redirect("/projects");
         }
     });
 

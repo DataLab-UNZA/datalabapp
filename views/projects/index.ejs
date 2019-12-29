@@ -1,3 +1,23 @@
+<!--
 <pre>
         <%- JSON.stringify(projects, null, 2) %>
 </pre>
+-->
+<table class="table table-sm">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Project ID</th>
+                    <th scope="col">Project Name</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% projects.forEach((project, index) => { %>
+                  <tr>
+                    <th scope="row"><%= index+1 %></th>
+                    <td><%= project.projectCode %></td>
+                    <td><%= project.projectName %></td>
+                  </tr>
+                  <% }); %>
+                </tbody>
+              </table>

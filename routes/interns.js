@@ -60,7 +60,12 @@ router.get("/search/name/:fullName", (req, res) => {
 });
 
 
-// Router for addding a new intern
+// Router for rendering new intern form
+router.get("/add", (req, res) => {
+    res.render("interns/add", {intern: new Intern()}); // render the form
+});
+
+// Router for adding a new intern
 router.post("/add", (req, res) => {
     //
     const newIntern = new Intern();
@@ -78,7 +83,8 @@ router.post("/add", (req, res) => {
         } else {
             //
             console.log(`Creating new intern: ${newIntern}`);
-            res.json(newIntern);
+            //res.json(newIntern);
+            res.redirect("/interns"); // redirect to interns list after successfully adding a new intern
         }
     });
 });

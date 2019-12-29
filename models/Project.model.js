@@ -24,4 +24,4 @@ const ProjectSchema = new Schema({
     responsibility: [{fullName: String}]
 });
 
-module.exports = mongoose.model("Projects", ProjectSchema, "datalabProjects");
+module.exports = mongoose.model("Project", ProjectSchema, "datalabProjects");

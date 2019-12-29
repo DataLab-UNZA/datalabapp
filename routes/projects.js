@@ -1,12 +1,12 @@
 const express = require("express");
 
 const router = express.Router();
-const Projects = require("../models/Project.model");
+const Project = require("../models/Project.model");
 
 // Router to extract all projects in the database
 router.get("/", (req, res) => {
     //res.send("/projects Router");
-    Projects.find({}).exec((error, projects) => {
+    Project.find({}).exec((error, projects) => {
         if(error) {
             // Check for errors
             console.log(`Error extracting projects from database. Error: ${error}`);
@@ -24,7 +24,7 @@ router.get("/", (req, res) => {
 router.get("/search/project/:searchText", (req, res) => {
     const searchText = req.params.searchText;
     //res.send("/search/project/:searchText");
-    Projects.find({$or: [
+    Project.find({$or: [
         {projectDescription: {$regex: '.*' + searchText + '*.'}}, 
         {projectName: {$regex: '.*' + searchText + '*.'}},
         {projectCode: {$regex: '.*' + searchText + '*.'}}
@@ -40,5 +40,34 @@ router.get("/search/project/:searchText", (req, res) => {
         }
     });
 });
+
+
+// Router for adding a single project
+router.post("/add", (req, res) => {
+    const newProject = new Project();
+
+    newProject.projectCode = req.body.projectCode;
+    newProject.projectName = req.body.projectName;
+    newProject.projectDescription = req.body.projectDescription;
+    // Push all individuals that are part of the project
+    req.body.responsibility.forEach((responsible) => {
+        newProject.responsibility.push({"fullName": responsible});
+    });
+    
+    newProject.save((error, project) => {
+        if(error) {
+            //
+            console.log(`Error creating new project. Error: ${error}`);
+            res.send(`Error creating new project.`);
+        } else {
+            //
+            console.log(`Creating new project: ${project}`);
+            res.json(project);
+        }
+    });
+
+
+});
+
 
 module.exports = router;

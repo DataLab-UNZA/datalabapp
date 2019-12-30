@@ -3,7 +3,8 @@
         <%- JSON.stringify(projects, null, 2) %>
 </pre>
 -->
-<table class="table table-sm">
+<h2>DataLab Projects</h2>
+<table class="table table-striped">
                 <thead>
                   <tr>
                     <th scope="col">#</th>
@@ -18,7 +19,7 @@
                     <th scope="row"><%= index+1 %></th>
                     <td><%= project.projectCode %></td>
                     <td><%= project.projectName %></td>
-                    <td><a href="/projects/search/project/<%= project.projectCode %>">View</a> | <a href="/projects/edit/<%= project.projectCode %>">Edit</a> <!--| <a href="/projects/delete/<%= project.projectCode %>?_method=DELETE">Delete</a>--></td>
+                    <td><a href="/projects/search/project/<%= project.projectCode %>" class="btn btn-primary" role="button">View</a>  <a href="/projects/edit/<%= project.projectCode %>" class="btn btn-primary" role="button">Edit</a> <!-- <a href="/projects/delete/<%= project.projectCode %>?_method=DELETE" class="btn btn-primary" role="button">Delete</a>--></td>
                   </tr>
                   <% }); %>
                 </tbody>

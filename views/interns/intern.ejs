@@ -10,8 +10,8 @@
                   <h6 class="card-subtitle mb-2 text-muted">Phone: <%= intern.phoneNumber %> </h6>
                   <h6 class="card-subtitle mb-2 text-muted">Address: <%= intern.residentialAddress %></h6>
                   <p class="card-text">[Profile details would go here]</p>
-                  <a href="/interns/search/id/<%= intern.studentID %>" class="card-link">View</a>
-                  <a href="/interns/edit/<%= intern.studentID %>" class="card-link">Edit</a>
-                  <a href="/interns/delete/<%= intern.studentID %>?_method=DELETE" class="card-link">Delete</a>
+                  <a href="/interns/search/id/<%= intern.studentID %>" class="card-link btn btn-primary" role="button">View</a>
+                  <a href="/interns/edit/<%= intern.studentID %>" class="card-link btn btn-primary" role="button">Edit</a>
+                  <a href="/interns/delete/<%= intern.studentID %>?_method=DELETE" class="card-link btn btn-primary" role="button">Delete</a>
                 </div>
               </div>

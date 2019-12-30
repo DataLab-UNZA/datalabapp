@@ -3,8 +3,8 @@
         <%- JSON.stringify(interns, null, 2) %>
 </pre>
 -->
-
-<table class="table table-sm">
+<h2>DataLab People</h2>
+<table class="table table-striped">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -21,7 +21,7 @@
       <td><%= intern.studentID %></td>
       <td><%= intern.fullName %></td>
       <td><%= intern.emailAddress[0] %></td>
-      <td><a href="/interns/search/id/<%= intern.studentID %>">View</a> | <a href="/interns/edit/<%= intern.studentID %>">Edit</a> <!--| <a href="/interns/delete/<%= intern.studentID %>?_method=DELETE">Delete</a>--></td>
+      <td><a href="/interns/search/id/<%= intern.studentID %>" class="btn btn-primary" role="button">View</a>  <a href="/interns/edit/<%= intern.studentID %>" class="btn btn-primary" role="button">Edit</a> <!-- <a href="/interns/delete/<%= intern.studentID %>?_method=DELETE" class="btn btn-primary" role="button">Delete</a>--></td>
     </tr>
     <% }); %>
   </tbody>

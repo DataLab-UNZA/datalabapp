@@ -1,11 +1,23 @@
-<label>Project Code: </label> <br>
-<input type="text" name="projectCode" value="<%= project.projectCode %>"> <br>
-<label>Project name:</label> <br>
-<input type="text" name="projectName" value="<%= project.projectName %>"> <br>
-<label>Project Description:</label> <br>
-<textarea name="projectDescription" cols="30" rows="10"><%= project.projectDescription %></textarea> <br>
-<label>Project Team Members:</label> <br>
-<% interns.forEach((intern, index) => { %>
-    <input type="checkbox" name="responsibility[<%= index %>]" value="<%= intern.fullName %>"> <%= intern.fullName %> <br>
-<% }); %> <br>
-<input type="submit" value="Save DataLab Project">
+<div class="form-group">
+<label>Project Code: </label>
+<input type="text" name="projectCode" value="<%= project.projectCode %>" class="form-control">
+</div>
+<div class="form-group">
+<label>Project name:</label>
+<input type="text" name="projectName" value="<%= project.projectName %>" class="form-control">
+</div>
+<div class="form-group">
+<label>Project Description:</label>
+<textarea name="projectDescription" cols="30" rows="10" class="form-control"><%= project.projectDescription %></textarea>
+</div>
+<div class="form-group">
+    <label>Project Team Members:</label> <br>
+</div>
+<div class="form-group">
+    <% interns.forEach((intern, index) => { %>
+        <div class="form-check">
+            <input type="checkbox" name="responsibility[<%= index %>]" value="<%= intern.fullName %>" class="form-check-input"><%= intern.fullName %> <br>
+        </div>
+    <% }); %>
+</div>
+<input type="submit" value="Save DataLab Project" class="btn btn-primary">

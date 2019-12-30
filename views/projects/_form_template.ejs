@@ -16,19 +16,8 @@
 <div class="form-group">
     <% interns.forEach((intern, index) => { %>
         <div class="form-check">
-            <input type="checkbox" name="responsibility[<%= index %>]" value="<%= intern.fullName %>" class="form-check-input" <%= project.responsibility.indexOf(intern.fullName) ? "checked": ""; %>> <%= intern.fullName %> <br>
+            <input type="checkbox" name="responsibility[<%= index %>]" value="<%= intern.fullName %>" class="form-check-input" <%= (project.responsibility.length > 0 && project.responsibility.indexOf(intern.fullName) !== -1) ? "checked": ""; %>> <%= intern.fullName %> <br>
         </div>
     <% }); %>
 </div>
 <input type="submit" value="Save DataLab Project" class="btn btn-primary">
-
-
-<br>
-<br>
-<br>
-<%= project.responsibility %>
-<br>
-<br>
-<pre>
-        <%= JSON.stringify(interns, null, 2) %>
-</pre>

@@ -77,7 +77,7 @@ app.use("/interns", internsRouter);
 app.use("/projects", projectsRouter);
 
 // Configure port where application will run from
-const PORT = process.env.PORT || 9001;
+let PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
     console.log(`DataLab app running on PORT: ${PORT}`);

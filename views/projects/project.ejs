@@ -3,13 +3,24 @@
     <%- JSON.stringify(project, null, 2) %>
 </pre>
 -->
-<div class="card" style="width: 18rem;">
+<div class="card border-dark mb-3" style="max-width: 30rem;">
+        <div class="card-header">DataLab User Profile</div>
         <div class="card-body">
           <h5 class="card-title"><%= project.projectName %></h5>
           <h6 class="card-subtitle mb-2 text-muted">Project Code: <%= project.projectCode %></h6>
           <p class="card-text"><%= project.projectDescription %></p>
-          <a href="/projects/search/id/<%= project.projectCode %>" class="card-link">View</a>
-          <a href="/projects/edit/<%= project.projectCode %>" class="card-link">Edit</a>
-          <a href="/projects/delete/<%= project.projectCode %>?_method=DELETE" class="card-link">Delete</a>
+          <h6 class="card-subtitle mb-2 text-muted">Project Team Members</h6>
+          <ul>
+            <% project.responsibility.forEach((projectMember) => { %>
+              <li><%= projectMember %></li>
+            <% }); %>
+          </ul>
+          <form method="POST" action="/projects/delete/<%= project.projectCode %>?_method=DELETE" class="form-inline"><a href="/projects/search/project/<%= project.projectCode %>" class="card-link btn btn-primary" role="button">View</a> <a href="/projects/edit/<%= project.projectCode %>" class="card-link btn btn-primary" role="button">Edit</a> &nbsp; &nbsp; &nbsp; <button type="submit" class="btn btn-primary">Delete</button></form>
         </div>
       </div>
+
+
+<br>
+<br>
+<br>
+<%= JSON.stringify(project.responsibility) %>

@@ -55,6 +55,16 @@ app.use(methodOverride("_method")); // TODO: READ UP on method overriding
 app.use(express.static(path.join(__dirname, "public"))); // Configure public directory
 app.use(express.static(__dirname + '/node_modules/bootstrap/dist')); // Configure Bootstrap
 
+// PLEASE READ up on how to override GET to DELETE request: https://stackoverflow.com/a/34929022/664424
+
+app.use((req, res, next) => {
+    if(req.method._method == "DELETE") {
+        req.method = "DELETE";
+        req.url = req.path;
+    }
+    next();
+});
+
 app.use(bodyParser.urlencoded(
     {
         extended: true

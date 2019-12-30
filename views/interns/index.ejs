@@ -21,7 +21,7 @@
       <td><%= intern.studentID %></td>
       <td><%= intern.fullName %></td>
       <td><%= intern.emailAddress[0] %></td>
-      <td><a href="/interns/search/id/<%= intern.studentID %>" class="btn btn-primary" role="button">View</a>  <a href="/interns/edit/<%= intern.studentID %>" class="btn btn-primary" role="button">Edit</a> <!-- <a href="/interns/delete/<%= intern.studentID %>?_method=DELETE" class="btn btn-primary" role="button">Delete</a>--></td>
+      <td><form method="POST" action="/interns/delete/<%= intern.studentID %>?_method=DELETE" class="form-inline"><a href="/interns/search/id/<%= intern.studentID %>" class="card-link btn btn-primary" role="button">View</a> <a href="/interns/edit/<%= intern.studentID %>" class="card-link btn btn-primary" role="button">Edit</a> &nbsp; &nbsp; &nbsp; <button type="submit" class="btn btn-primary">Delete</button></form></td>
     </tr>
     <% }); %>
   </tbody>

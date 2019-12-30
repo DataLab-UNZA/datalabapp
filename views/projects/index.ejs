@@ -19,7 +19,7 @@
                     <th scope="row"><%= index+1 %></th>
                     <td><%= project.projectCode %></td>
                     <td><%= project.projectName %></td>
-                    <td><a href="/projects/search/project/<%= project.projectCode %>" class="btn btn-primary" role="button">View</a>  <a href="/projects/edit/<%= project.projectCode %>" class="btn btn-primary" role="button">Edit</a> <!-- <a href="/projects/delete/<%= project.projectCode %>?_method=DELETE" class="btn btn-primary" role="button">Delete</a>--></td>
+                    <td><form method="POST" action="/projects/delete/<%= project.projectCode %>?_method=DELETE" class="form-inline"><a href="/projects/search/project/<%= project.projectCode %>" class="card-link btn btn-primary" role="button">View</a> <a href="/projects/edit/<%= project.projectCode %>" class="card-link btn btn-primary" role="button">Edit</a> &nbsp; &nbsp; &nbsp; <button type="submit" class="btn btn-primary">Delete</button></form></td>
                   </tr>
                   <% }); %>
                 </tbody>

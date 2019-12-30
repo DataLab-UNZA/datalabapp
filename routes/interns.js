@@ -4,10 +4,6 @@ const router = express.Router();
 
 const Intern = require("../models/Intern.model");
 
-// Method override
-const methodOverride = require("method-override"); // TODO: READ UP 
-router.use(methodOverride("_method")); // TODO: READ UP on method overriding
-
 // Router for extracting all records
 router.get("/", (req, res) => {
     //res.send("/authors router");
@@ -144,16 +140,6 @@ router.put("/edit/:studentID", (req, res) => {
         });
 });
 
-// PLEASE READ up on how to override GET to DELETE request: https://stackoverflow.com/a/34929022/664424
-
-router.use((req, res, next) => {
-    if(req.method._method == "DELETE") {
-        req.method = "DELETE";
-        req.url = req.path;
-    }
-    next();
-});
-
 // Router for deleting an existing user
 router.delete("/delete/:studentID", (req, res) => {
     const internID = req.params.studentID;
@@ -171,7 +157,7 @@ router.delete("/delete/:studentID", (req, res) => {
                 //
                 console.log(`Deleted intern: ${intern}`);
                 //res.json(intern); // ONLY used for testing API calls
-                res.render("/interns");
+                res.redirect("/interns");
             }
         });
 });

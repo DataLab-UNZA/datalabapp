@@ -20,8 +20,8 @@ const Schema = mongoose.Schema;
 const ProjectSchema = new Schema({
     projectCode: String,
     projectName: String,
-    ProjectDescription: String,
-    responsibility: [{}]
+    projectDescription: String,
+    responsibility: [String]
 });
 
 module.exports = mongoose.model("Project", ProjectSchema, "datalabProjects");

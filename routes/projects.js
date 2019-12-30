@@ -91,7 +91,7 @@ router.post("/add", (req, res) => {
     /*req.body.responsibility.forEach((responsible) => {
         newProject.responsibility.push({"fullName": responsible});
     });*/
-    newProject.responsibility = {fullName: req.body.responsibility};
+    newProject.responsibility = req.body.responsibility;
     
     newProject.save((error, project) => {
         if(error) {
@@ -186,7 +186,8 @@ router.delete("/delete/:projectID", (req, res) => {
             } else {
                 //
                 console.log(`Deleted project: ${project}`);
-                res.send(`Deleted project: ${project}`);
+                //res.send(`Deleted project: ${project}`);
+                res.redirect("/projects");
             }
         });
 });

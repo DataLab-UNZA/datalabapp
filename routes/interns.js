@@ -4,6 +4,10 @@ const router = express.Router();
 
 const Intern = require("../models/Intern.model");
 
+// Method override
+const methodOverride = require("method-override"); // TODO: READ UP 
+router.use(methodOverride("_method")); // TODO: READ UP on method overriding
+
 // Router for extracting all records
 router.get("/", (req, res) => {
     //res.send("/authors router");
@@ -36,7 +40,7 @@ router.get("/search/id/:studentID", (req, res) => {
             //
             console.log(`Found student: ${searchKey}`);
             //res.json(student); // ONLY used for testing API calls
-            res.render("interns/intern", {intern: intern}); // render a single intern
+            res.render("interns/intern", {intern: intern[0]}); // render a single intern
         }
     });
 });
@@ -89,6 +93,24 @@ router.post("/add", (req, res) => {
     });
 });
 
+
+// Router for rendering form for editing intern
+router.get("/edit/:studentID", (req, res) => {
+    //
+    const internID = req.params.studentID;
+    Intern.find({studentID: internID}).exec((error, intern) => {
+        if(error) {
+            //
+            console.log(`Error extracting intern. Error: ${error}`);
+            res.send(`Error extracting intern.`);
+        } else {
+            //
+            console.log(`Extracting intern: ${intern}`);
+            res.render("interns/edit", {intern: intern[0]}); // find seems to return an array: this causes issues with add and edit
+        }
+    });
+});
+
 // Router for editing  an existing user
 router.put("/edit/:studentID", (req, res) => {
     //
@@ -116,9 +138,20 @@ router.put("/edit/:studentID", (req, res) => {
             } else {
                 //
                 console.log(`Document after update: ${intern}`);
-                res.json(intern);
+                //res.json(intern); // ONLY used for testing API calls
+                res.redirect("/interns");
             }
         });
+});
+
+// PLEASE READ up on how to override GET to DELETE request: https://stackoverflow.com/a/34929022/664424
+
+router.use((req, res, next) => {
+    if(req.method._method == "DELETE") {
+        req.method = "DELETE";
+        req.url = req.path;
+    }
+    next();
 });
 
 // Router for deleting an existing user
@@ -137,7 +170,8 @@ router.delete("/delete/:studentID", (req, res) => {
             } else {
                 //
                 console.log(`Deleted intern: ${intern}`);
-                res.json(intern);
+                //res.json(intern); // ONLY used for testing API calls
+                res.render("/interns");
             }
         });
 });

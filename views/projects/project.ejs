@@ -1,3 +1,15 @@
+<!--
 <pre>
-    <%- JSON.stringify(projects, null, 2) %>
+    <%- JSON.stringify(project, null, 2) %>
 </pre>
+-->
+<div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title"><%= project.projectName %></h5>
+          <h6 class="card-subtitle mb-2 text-muted">Project Code: <%= project.projectCode %></h6>
+          <p class="card-text"><%= project.projectDescription %></p>
+          <a href="/projects/search/id/<%= project.projectCode %>" class="card-link">View</a>
+          <a href="/projects/edit/<%= project.projectCode %>" class="card-link">Edit</a>
+          <a href="/projects/delete/<%= project.projectCode %>?_method=DELETE" class="card-link">Delete</a>
+        </div>
+      </div>

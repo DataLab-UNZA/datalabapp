@@ -1,3 +1,17 @@
+<!--
 <pre>
         <%- JSON.stringify(intern, null, 2) %>
 </pre>
+-->
+<div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title"><%= intern.fullName %></h5>
+                  <h6 class="card-subtitle mb-2 text-muted">Email: <%= intern.emailAddress %></h6>
+                  <h6 class="card-subtitle mb-2 text-muted">Phone: <%= intern.phoneNumber %> </h6>
+                  <h6 class="card-subtitle mb-2 text-muted">Address: <%= intern.residentialAddress %></h6>
+                  <p class="card-text">[Profile details would go here]</p>
+                  <a href="/interns/search/id/<%= intern.studentID %>" class="card-link">View</a>
+                  <a href="/interns/edit/<%= intern.studentID %>" class="card-link">Edit</a>
+                  <a href="/interns/delete/<%= intern.studentID %>?_method=DELETE" class="card-link">Delete</a>
+                </div>
+              </div>

@@ -7,7 +7,11 @@
     "prod:start": "node app.js",
     "dev:start": "nodemon app.js"
   },
-  "keywords": ["DataLab", "Express JS", "MongoDB"],
+  "keywords": [
+    "DataLab",
+    "Express JS",
+    "MongoDB"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
@@ -19,6 +23,7 @@
     "ejs": "^3.0.1",
     "express": "^4.17.1",
     "express-ejs-layouts": "^2.5.0",
+    "method-override": "^3.0.0",
     "mongoose": "^5.8.3"
   }
 }

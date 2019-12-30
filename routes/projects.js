@@ -22,6 +22,25 @@ router.get("/", (req, res) => {
 });
 
 
+// Router to extract a project by Project Code
+router.get("/search/project/:projectID", (req, res) => {
+    //
+    const projectID = req.params.projectID;
+
+    Project.find({projectCode: projectID}).exec((error, project) => {
+        if(error) {
+            //
+            console.log(`Error extracting Project. Error: ${error}`);
+            res.render("projects/index");
+        } else {
+            // 
+            console.log(`Extracting Project: ${project}`);
+            res.render("projects/project", {project: project[0]});
+        }
+    });
+});
+
+
 // Router to extract projects with name or description matching search text
 router.get("/search/project/:searchText", (req, res) => {
     const searchText = req.params.searchText;
@@ -39,7 +58,7 @@ router.get("/search/project/:searchText", (req, res) => {
             //
             console.log(`Extracting projects with phrase: ${searchText}`);
             //res.json(projects); // ONLY used for testing API calls
-            res.render("projects/project", {projects: projects});
+            res.render("projects/index", {projects: projects});
         }
     });
 });
@@ -91,6 +110,37 @@ router.post("/add", (req, res) => {
 });
 
 
+// Router for rendering form to edit existing project
+// Router for rendering form for editing intern
+router.get("/edit/:projectID", (req, res) => {
+    //
+    const projectID = req.params.projectID;
+
+    Project.find({projectCode: projectID}).exec((error, project) => {
+        if(error) {
+            //
+            console.log(`Error extracting project. Error: ${error}`);
+            res.send(`Error extracting project.`);
+        } else {
+            //
+            // Nested query to extract all interns
+            Intern.find({}).exec((error, intern) =>{
+                if(error) {
+                    //
+                    console.log(`Error extracting interns. Error: ${error}`);
+                    res.redirect("/interns");
+                } else {
+                    //
+                    console.log(`Extracting interns: ${intern}`);
+                    console.log(`Extracting project: ${project}`);
+                    res.render("projects/edit", {project: project[0], interns: intern}); // find seems to return an array: this causes issues with add and edit
+                }
+            });
+        }
+    });
+});
+
+
 // Router for editing an existing Project
 router.put("/edit/:projectID", (req, res) => {
     const projectID = req.params.projectID;
@@ -115,7 +165,8 @@ router.put("/edit/:projectID", (req, res) => {
             } else {
                 //
                 console.log(`Update project: ${project}`);
-                res.json(project);
+                //res.json(project); // ONLY used for testing API calls
+                res.redirect("/projects");
             }
         });
 });

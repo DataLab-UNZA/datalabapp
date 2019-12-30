@@ -11,6 +11,7 @@
       <th scope="col">Identity</th>
       <th scope="col">Full Name</th>
       <th scope="col">Email</th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
@@ -20,6 +21,7 @@
       <td><%= intern.studentID %></td>
       <td><%= intern.fullName %></td>
       <td><%= intern.emailAddress[0] %></td>
+      <td><a href="/interns/search/id/<%= intern.studentID %>">View</a> | <a href="/interns/edit/<%= intern.studentID %>">Edit</a> <!--| <a href="/interns/delete/<%= intern.studentID %>?_method=DELETE">Delete</a>--></td>
     </tr>
     <% }); %>
   </tbody>

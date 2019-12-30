@@ -53,6 +53,7 @@ app.set("layout", path.join("layouts", "layout")); // Specify layout file to be 
 app.use(expressLayouts); // Explicitly indicate that expressLayouts will be used---express-ejs-layouts
 app.use(methodOverride("_method")); // TODO: READ UP on method overriding
 app.use(express.static(path.join(__dirname, "public"))); // Configure public directory
+app.use(express.static(__dirname + '/node_modules/bootstrap/dist')); // Configure Bootstrap
 
 app.use(bodyParser.urlencoded(
     {

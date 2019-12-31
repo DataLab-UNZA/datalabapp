@@ -18,7 +18,7 @@
 const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
-const InternSchema = new Schema({
+const PersonSchema = new Schema({
     // Notice the different ways of defining a schema entry
     fullName: {
         type: String,
@@ -31,4 +31,4 @@ const InternSchema = new Schema({
 });
 
 
-module.exports = mongoose.model("Intern", InternSchema, "datalabRAs");
+module.exports = mongoose.model("Person", PersonSchema, "datalabRAs");

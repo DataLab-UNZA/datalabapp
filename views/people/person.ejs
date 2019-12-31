@@ -1,0 +1,18 @@
+<!--
+<pre>
+        <%- JSON.stringify(person, null, 2) %>
+</pre>
+-->
+<div class="card border-dark mb-3" style="max-width: 30rem;">
+                <div class="card-header">DataLab User Profile</div>
+                <div class="card-body">
+                  <h5 class="card-title"><%= person.fullName %></h5>
+                  <h6 class="card-subtitle mb-2 text-muted">Email: <%= person.emailAddress %></h6>
+                  <h6 class="card-subtitle mb-2 text-muted">Phone: <%= person.phoneNumber %> </h6>
+                  <h6 class="card-subtitle mb-2 text-muted">Address: <%= person.residentialAddress %></h6>
+                  <p class="card-text">[Profile details would go here]</p>
+                  <!--<a href="/people/delete/<%= person.studentID %>?_method=DELETE" class="card-link btn btn-primary" role="button">Delete</a>-->
+                  <form method="POST" action="/people/delete/<%= person.studentID %>?_method=DELETE" class="form-inline"><a href="/people/search/id/<%= person.studentID %>" class="card-link btn btn-primary" role="button">View</a> <a href="/people/edit/<%= person.studentID %>" class="card-link btn btn-primary" role="button">Edit</a> &nbsp; &nbsp; &nbsp; <button type="submit" class="btn btn-primary">Delete</button></form>
+
+                </div>
+              </div>

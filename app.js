@@ -41,7 +41,7 @@ db.once("open", () => {
 });
 
 const indexRouter = require("./routes/index");
-const internsRouter = require("./routes/interns");
+const peopleRouter = require("./routes/people");
 const projectsRouter = require("./routes/projects");
 
 
@@ -76,7 +76,7 @@ app.use(bodyParser.urlencoded(
 
 // Configure sub routers
 app.use("/", indexRouter);
-app.use("/interns", internsRouter);
+app.use("/people", peopleRouter);
 app.use("/projects", projectsRouter);
 
 // Configure port where application will run from

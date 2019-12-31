@@ -2,7 +2,7 @@ const express = require("express");
 
 const router = express.Router();
 const Project = require("../models/Project.model");
-const Intern = require("../models/Intern.model");
+const Person = require("../models/Person.model");
 
 // Router to extract all projects in the database
 router.get("/", (req, res) => {
@@ -67,7 +67,7 @@ router.get("/search/project/:searchText", (req, res) => {
 // Router for rendering form for adding new project
 router.get("/add", (req, res) => {
     
-    Intern.find({}).exec((error, intern) =>{
+    Person.find({}).exec((error, intern) =>{
         if(error) {
             //
             console.log(`Error extracting interns. Error: ${error}`);
@@ -124,7 +124,7 @@ router.get("/edit/:projectID", (req, res) => {
         } else {
             //
             // Nested query to extract all interns
-            Intern.find({}).exec((error, intern) =>{
+            Person.find({}).exec((error, intern) =>{
                 if(error) {
                     //
                     console.log(`Error extracting interns. Error: ${error}`);

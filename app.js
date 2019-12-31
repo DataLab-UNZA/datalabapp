@@ -43,6 +43,7 @@ db.once("open", () => {
 const indexRouter = require("./routes/index");
 const peopleRouter = require("./routes/people");
 const projectsRouter = require("./routes/projects");
+const usersRouter = require("./routes/users")
 
 
 //--- Settings ---
@@ -78,6 +79,7 @@ app.use(bodyParser.urlencoded(
 app.use("/", indexRouter);
 app.use("/people", peopleRouter);
 app.use("/projects", projectsRouter);
+app.use("/users", usersRouter);
 
 // Configure port where application will run from
 //let PORT = process.env.PORT || 3000;

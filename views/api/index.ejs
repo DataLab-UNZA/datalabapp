@@ -1,0 +1,23 @@
+<h4>DataLab App API</h4>
+<p>Root path: /api</p>
+<h5>Index</h5>
+<ul>
+  <li>GET / &ndash; Return index page with endpoints</li>
+</ul>
+<h5>People</h5>
+<ul>
+  <li>GET /people &ndash; Return all people in the databasse</li>
+  <li>GET /people/:ID &ndash; Return person with specified ID</a></li>
+  <li>GET /people/:NAME &ndash; Return people with specified name</li>
+  <li>POST /people/add &ndash; Add a new person to the database. Person details MUST be specified</li>
+  <li>PUT /people/:ID &ndash; Overwrite person details. Person details MUST be specified</li>
+  <li>DELETE /people/:ID &ndash; Delete person specified with ID from database</li>
+</ul>
+<h5>Projects</h5>
+<ul>
+    <li>GET /projects &ndash; Return all projects in the databasse</li>
+    <li>GET /project/:ID &ndash; Return project with specified ID</a></li>
+    <li>POST /project/add &ndash; Add a new project to the database. Project details MUST be specified</li>
+    <li>PUT /project/:ID &ndash; Overwrite project details. Project details MUST be specified</li>
+    <li>DELETE /project/:ID &ndash; Delete project specified with ID from database</li>
+</ul>

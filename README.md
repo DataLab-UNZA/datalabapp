@@ -3,13 +3,13 @@
 A basic Node.js Express-based CRUD Web application used as a teaching aid.
 
 ## Technology Stack
-* [Node.js] (https://nodejs.org/) 
-* [MongoDB] (https://www.mongodb.com) 
+* [Node.js](https://nodejs.org/) 
+* [MongoDB](https://www.mongodb.com) 
 
 ## Frameworks
-* [Express] (https://expressjs.com) 
-* [Mongoose] (https://mongoosejs.com/) 
-* [Bootstrap] (https://getbootstrap.com) 
+* [Express](https://expressjs.com) 
+* [Mongoose](https://mongoosejs.com/) 
+* [Bootstrap](https://getbootstrap.com) 
 
 
 ## Demo
